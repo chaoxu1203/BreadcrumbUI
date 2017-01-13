@@ -6,27 +6,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Electron Experiment</title>
-
-    <link rel="stylesheet" href="./css/jquery.flipster.min.css">
+    <link rel="stylesheet" href="./css/easyui.css">
+    <link rel="stylesheet" href="./css/icon.css">
     <link rel="stylesheet" href="./css/styles.css">
 
 </head>
 <body>
 
-<div class="flipster">
-    <ul>
-    </ul>
-</div>
-
 <p class="stats"></p>
-<p id="welcome"></p>
 <div id="leftTopCanv" class="Canvas"></div>
 <div id="rightTopCanv" class="Canvas"></div>
 <div id="leftBottomCanv" class="Canvas"></div>
 <div id="rightBottomCanv" class="Canvas"></div>
 
+<a id="f1" value="1" class="easyui-linkbutton" >a1 Open</a>
+<a id="f3" value="3" class="easyui-linkbutton" >a3 Open</a>
+<a id="f2" value="2" class="easyui-linkbutton" >a2 Open</a>
+
+<div id="win" class="easyui-window" title="消防员基本信息" closed="true" style="width:600px;height:400px"
+     data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,resizable:false" >
+    <div class="easyui-layout" fit="true">
+        <div data-options="region:'west',split:false" border="false"  style="width:100px;text-align:right;">
+            <div style="padding:30px 10px 10px 10px;">
+                <p class="fffield">姓名:</p>
+                <p class="fffield">年龄:</p>
+                <p class="fffield">编号:</p>
+                <p class="fffield">职务:</p>
+            </div>
+        </div>
+        <div data-options="region:'center',split:false" border="false" style="text-align:left;width:300px;">
+            <div style="padding:30px 10px 10px 10px;">
+                <p class="ffinfo"><label id="name">name</label></p>
+                <p class="ffinfo"><label id="age">age</label></p>
+                <p class="ffinfo"><label id="no"></label></p>
+                <p class="ffinfo"><label id="title"></label></p>
+            </div>
+
+        </div>
+        <div data-options="region:'east',split:false" border="true" style="text-align:center;width:200px;">pic
+
+                <img id="photo" src="./images/ff1.jpg" width="150" height="200" />
+
+        </div>
+    </div>
+</div>
 
 <script>window.$ = window.jQuery = require('./js/jquery.min.js');</script>
+<script src="./js/jquery.min.js"></script>
+<script src="./js/jquery.easyui.min.js"></script>
 <script src="./js/script.js"></script>
+<script src="./js/info.js"></script>
 </body>
 </html>

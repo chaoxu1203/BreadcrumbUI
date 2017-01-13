@@ -2,7 +2,6 @@
 $(function(){
 
     $('.stats').append('hello electron');
-    $("#welcome").append('welcome');
 
     console.log('欢迎');
     var net = require('net');
@@ -16,10 +15,7 @@ $(function(){
     });
 
     client.on('data', function(data) {
-
         console.log('DATA: ' + data);
-        var bodyt = 2;
-        var heart = 4;
         // 完全关闭连接
         //client.destroy();
     });
