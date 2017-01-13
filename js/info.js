@@ -1,22 +1,26 @@
+/*
+author：徐超
+ */
 
 $(function(){
 
-    var firefights = getInfos();
+    var firefights = getInfos();//获取消防员信息
 
-        //#f1,#f2,#f3的点击事件
+    //#f1,#f2,#f3的点击事件
     $('#f1,#f2,#f3').click(function(){
         $('#win').window('open');
         var index = parseInt($(this).attr("value")) - 1;
         var firefight = firefights[index];
+        //将消防员信息显示到界面
         $('#name').text(firefight.name);
         $('#age').text(firefight.age);
         $('#no').text(firefight.no);
         $('#title').text(firefight.title);
         $('#photo').attr("src", firefight.photoSrc);
        // console.log("src:"+$('#photo').attr("src"));
-
     });
 
+    //生成消防员信息
     function getInfos() {
         var firefight1 = {
            name : "消防员1",
