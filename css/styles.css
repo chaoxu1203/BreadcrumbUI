@@ -69,3 +69,32 @@ a, a:visited, a:hover{
 
 
 }
+
+.bodystyle{
+	filter:alpha(opacity=60);
+	-moz-opacity:0.6;
+	-khtml-opacity: 0.6;
+	opacity: 0.6;
+	height:100%;
+	width:100%;
+	position:absolute;
+	background:url("./images/bg.jpg");
+	/* background-color：rgba(255,255,255,0.2)*/
+}
+.elementstyle{
+	opacity: 1;
+	z-index:10;
+}
+.opacity{background: rgba(0,0,0,1);}
+.lt{ background:url("/images/ff.png") no-repeat; left:1px; top:10px; position:absolute; width:170px; height:170px; filter:alpha(opacity=100);
+	-moz-opacity: 1;
+	-khtml-opacity: 1;
+	opacity: 1;}
+.rt{ background:url("./images/ff.png") no-repeat; right:1px;  top:10px; position:absolute; width:170px; height:170px;}
+.lb{ background:url("./images/ff.png") no-repeat; left:1px; bottom:10px; position:absolute; width:170px; height:170px;}
+.rb{ background:url("./images/ff.png") no-repeat; right:1px; bottom:10px; position:absolute; width:170px; height:170px;}
+.mac{ background:url("./images/mac.png") no-repeat; left:460px; top:260px; width:170px; position:absolute; height:140px;}
+.line1{ left:250px; top:130px; position:absolute;}
+.line2{ right:250px; top:130px; position:absolute;}
+.line3{ left:250px; bottom:130px; position:absolute;}
+.line4{ right:250px; bottom:130px; position:absolute;}
