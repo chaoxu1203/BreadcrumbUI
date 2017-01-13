@@ -1,7 +1,7 @@
 
 $(function(){
 
-    $('.stats').append('hello electron');
+    //$('.stats').append('hello electron');
 
     console.log('欢迎');
     var net = require('net');
