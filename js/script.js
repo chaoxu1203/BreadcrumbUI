@@ -83,27 +83,29 @@ function drawLine(id,rgb,startx,starty,endx,endy,nodeArray) {
     context.strokeStyle = rgb;
     context.fillStyle = rgb;
     context.lineWidth=3;
-    //实验证明第一次lineTo的时候和moveTo功能一样
-    context.lineTo(startx, starty);
+    context.moveTo(startx, starty);
     //之后的lineTo会以上次lineTo的节点为开始
     var lineLength = Math.floor(Math.sqrt((endx-startx)*(endx-startx)+(endy-starty)*(endy-starty)));
     var fractionLength = Math.floor(lineLength / (nodeArray.length*2 + 1));
     var xFractionLength = Math.floor((endx-startx) / (nodeArray.length*2 + 1));
     var yFractionLength = Math.floor((endy-starty) / (nodeArray.length*2 + 1));
-    console.log("nodeArray.length = "+nodeArray.length)
-    console.log("startx = "+startx)
-    console.log("starty = "+starty)
-    console.log("endx = "+endx)
-    console.log("endy = "+endy)
-    //context.lineTo(startx+xFractionLength, starty+yFractionLength);
+    context.lineTo(startx+xFractionLength, starty+yFractionLength);
     for (var i = 0; i < nodeArray.length; i++)
     {
-        //context.beginPath();
         //context.rotate(45*Math.PI/180);
-        context.fillRect(Number(startx+xFractionLength*(i*2+1)),Number(starty+yFractionLength*(i*2+1)),xFractionLength,yFractionLength);
+        context.strokeStyle = "rgb(0,255,255)";
+        context.lineWidth=1;
+        if(id === "line2" || id === "line3")
+            context.strokeText(nodeArray[i], Number(startx+xFractionLength*(i*2+1.6)), Number(starty+yFractionLength*(i*2+1.6)));
+        else if(id === "line1" || id === "line4")
+            context.strokeText(nodeArray[i], Number(startx+xFractionLength*(i*2+1.4)), Number(starty+yFractionLength*(i*2+1.6)));
+        context.strokeStyle = rgb;
+        context.lineWidth=3;
+        context.strokeRect(Number(startx+xFractionLength*(i*2+1)),Number(starty+yFractionLength*(i*2+1)),xFractionLength,yFractionLength);
         //context.beginPath();
         //context.rotate(-45*Math.PI/180);
-        //context.lineTo(startx+xFractionLength*(i*2+2), starty+yFractionLength*(i*2+2));
+        context.moveTo(Number(startx+xFractionLength*(i*2+2)), Number(starty+yFractionLength*(i*2+2)));
+        context.lineTo(Number(startx+xFractionLength*(i*2+3)), Number(starty+yFractionLength*(i*2+3)));
     }
     context.lineTo(endx, endy);
     context.stroke();
