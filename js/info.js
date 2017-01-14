@@ -7,7 +7,7 @@ $(function(){
     var firefights = getInfos();//获取消防员信息
 
     //#f1,#f2,#f3的点击事件
-    $('#f1,#f2,#f3').click(function(){
+    $('#f1,#f2,#f3,#f4').click(function(){
         $('#win').window('open');
         var index = parseInt($(this).attr("value")) - 1;
         var firefight = firefights[index];

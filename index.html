@@ -8,11 +8,7 @@
 </head>
 <body>
 
-<a id="f1" value="1" class="easyui-linkbutton" >a1 Open</a>
-<a id="f3" value="3" class="easyui-linkbutton" >a3 Open</a>
-<a id="f2" value="2" class="easyui-linkbutton" >a2 Open</a>
-
-<div id="win" class="easyui-window" title="消防员基本信息" closed="true" style="width:600px;height:400px"
+<div id="win" class="easyui-window" title="消防员基本信息" closed="true" style="width:600px;height:300px"
      data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,resizable:false" >
     <div class="easyui-layout" fit="true">
         <div data-options="region:'west',split:false" border="false"  style="width:100px;text-align:right;">
@@ -32,17 +28,17 @@
             </div>
 
         </div>
-        <div data-options="region:'east',split:false" border="true" style="text-align:center;width:200px;">pic
+        <div data-options="region:'east',split:false" border="true" style="text-align:center;width:200px;">
                 <img id="photo" src="./images/ff1.jpg" width="150" height="200" />
         </div>
     </div>
 </div>
 
 <div class="bodystyle">
-    <div class="lt elementstyle"></div>
-    <div class="rt"></div>
-    <div class="lb"></div>
-    <div class="rb"></div>
+    <div id="f1" value="1" class="lt elementstyle"></div>
+    <div id="f2" value="2" class="rt"></div>
+    <div id="f3" value="3" class="lb"></div>
+    <div id="f4" value="4" class="rb"></div>
     <div class="mac">5</div>
     <div style="padding:10px 20px 10px 20px; left:180px; top:20px; position:absolute; width:170px; height:170px;">
         <p><span style="font-size: medium">编号:</span><span id="id1">1</span></p>
