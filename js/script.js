@@ -80,7 +80,7 @@ function draw(id) {
     context.fill();
     context.stroke();
 }
-function drawLine(id,rgb,startx,endx,starty,endy) {
+function drawLine(id,rgb,startx,starty,endx,endy,nodeArray) {
     var canvas = document.getElementById(id);
     if (canvas == null)
         return false;
@@ -88,19 +88,35 @@ function drawLine(id,rgb,startx,endx,starty,endy) {
     //context.beginPath();
     context.strokeStyle = rgb;
     context.fillStyle = rgb;
-    context.lineWidth=10;
+    context.lineWidth=3;
     //实验证明第一次lineTo的时候和moveTo功能一样
-    context.lineTo(startx, endx);
+    context.lineTo(startx, starty);
     //之后的lineTo会以上次lineTo的节点为开始
-    context.lineTo(starty, endy);
-    //context.lineTo(200, 100);
-   /* context.moveTo(200, 50);
-    context.lineTo(100,50);*/
+    var lineLength = Math.floor(Math.sqrt((endx-startx)*(endx-startx)+(endy-starty)*(endy-starty)));
+    var fractionLength = Math.floor(lineLength / (nodeArray.length*2 + 1));
+    var xFractionLength = Math.floor((endx-startx) / (nodeArray.length*2 + 1));
+    var yFractionLength = Math.floor((endy-starty) / (nodeArray.length*2 + 1));
+    console.log("nodeArray.length = "+nodeArray.length)
+    console.log("startx = "+startx)
+    console.log("starty = "+starty)
+    console.log("endx = "+endx)
+    console.log("endy = "+endy)
+    //context.lineTo(startx+xFractionLength, starty+yFractionLength);
+    for (var i = 0; i < nodeArray.length; i++)
+    {
+        //context.beginPath();
+        //context.rotate(45*Math.PI/180);
+        context.fillRect(Number(startx+xFractionLength*(i*2+1)),Number(starty+yFractionLength*(i*2+1)),xFractionLength,yFractionLength);
+        //context.beginPath();
+        //context.rotate(-45*Math.PI/180);
+        //context.lineTo(startx+xFractionLength*(i*2+2), starty+yFractionLength*(i*2+2));
+    }
+    context.lineTo(endx, endy);
     context.stroke();
-    context.fill();
+    //context.fill();
 }
 
-drawLine("line1","rgb(255,0,0)",10,10,200,200);
-drawLine("line2","rgb(0,255,0)",200,10,10,200);
-drawLine("line3","rgb(0,0,255)",200,0,0,200);
-drawLine("line4","rgb(255,255,0)",30,30,230,230);
+drawLine("line1","rgb(255,0,0)",10,10,150,150,[1,2,3,4]);
+drawLine("line2","rgb(0,255,0)",150,10,10,150,[1,2,3]);
+drawLine("line3","rgb(0,0,255)",150,10,10,150,[1,2]);
+drawLine("line4","rgb(255,255,0)",10,10,150,150,[1]);

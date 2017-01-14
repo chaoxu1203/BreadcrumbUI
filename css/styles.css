@@ -90,7 +90,7 @@ a, a:visited, a:hover{
 .rt{ background:url("./images/ff.png") no-repeat; right:1px;  top:10px; position:absolute; width:170px; height:170px;}
 .lb{ background:url("./images/ff.png") no-repeat; left:1px; bottom:10px; position:absolute; width:170px; height:170px;}
 .rb{ background:url("./images/ff.png") no-repeat; right:1px; bottom:10px; position:absolute; width:170px; height:170px;}
-.mac{ background:url("./images/mac.png") no-repeat; left:460px; top:260px; width:170px; position:absolute; height:140px;}
+.mac{ background:url("./images/mac.png") no-repeat; left:440px; top:260px; width:170px; position:absolute; height:140px;}
 .line1{ left:250px; top:130px; position:absolute;}
 .line2{ right:250px; top:130px; position:absolute;}
 .line3{ left:250px; bottom:130px; position:absolute;}
