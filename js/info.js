@@ -27,28 +27,28 @@ $(function(){
            age : 26,
             no : "No05120001",
             title : "班长",
-            photoSrc : "./images/ff1.jpg"
+            photoSrc : "./images/ff1.png"
         }
         var firefight2 = {
             name : "消防员2",
             age : 24,
             no : "No05120002",
             title : "工兵",
-            photoSrc : "./images/ff2.jpg"
+            photoSrc : "./images/ff2.png"
         }
         var firefight3 = {
             name : "消防员3",
             age : 25,
             no : "No05120003",
             title : "工兵",
-            photoSrc : "./images/ff3.jpg"
+            photoSrc : "./images/ff3.png"
         }
         var firefight4 = {
             name : "消防员4",
             age : 23,
             no : "No05120004",
             title : "工兵",
-            photoSrc : "./images/ff4.jpg"
+            photoSrc : "./images/ff4.png"
         }
         var firefights = [];
         firefights.push(firefight1);
