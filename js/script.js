@@ -23,15 +23,16 @@ $(function(){
 
         var datas = new Array();
         datas = data.toString().split("\t");
-        if(data.length==35) {
+        var type = datas[4].toString
+        if(type == "56") {
             console.log('env info');
             var Hex = datas[2]
             var envorinment_temperature = datas[6]
             var body_temperature = datas[7]
             var heart_rate = datas[8]
-            var place_x = datas[9]
-            var place_y = datas[10]
-            var place_z = datas[11]
+            var relate_node_num = datas[9]
+            var remain_node_num = datas[10]
+            var battery = datas[11]
 
             var index = getIndex(Hex);
             index = index + 1;
@@ -41,7 +42,7 @@ $(function(){
             $('#heartBeat'+ index).text(heart_rate);
             $('#temperature' + index).text(envorinment_temperature);
         }
-        else if(data.length==25) {
+        else if(type == "57") {
             var jump_step = datas[5]
             var network_address = datas[8]
         }
