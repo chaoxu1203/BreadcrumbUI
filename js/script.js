@@ -110,9 +110,13 @@ function drawLine(id,rgb,startx,starty,endx,endy,nodeArray) {
     context.lineTo(endx, endy);
     context.stroke();
     //context.fill();
+    $('#surplusElectricity1').val(30);
+    $('#surplusElectricity2').val(50);
+    $('#surplusElectricity3').val(70);
+    $('#surplusElectricity4').val(90);
 }
 
 drawLine("line1","rgb(255,0,0)",10,10,150,150,[1,2,3,4]);
-drawLine("line2","rgb(0,255,0)",150,10,10,150,[1,2,3]);
-drawLine("line3","rgb(0,0,255)",150,10,10,150,[1,2]);
-drawLine("line4","rgb(255,255,0)",10,10,150,150,[1]);
+drawLine("line2","rgb(0,255,0)",150,10,10,150,[5,6,7]);
+drawLine("line3","rgb(0,0,255)",150,10,10,150,[8,9]);
+drawLine("line4","rgb(255,255,0)",10,10,150,150,[10]);
