@@ -71,10 +71,10 @@ a, a:visited, a:hover{
 }
 
 .bodystyle{
-	filter:alpha(opacity=60);
-	-moz-opacity:0.6;
-	-khtml-opacity: 0.6;
-	opacity: 0.6;
+	filter:alpha(opacity=70);
+	-moz-opacity:0.7;
+	-khtml-opacity: 0.7;
+	opacity: 0.7;
 	height:100%;
 	width:100%;
 	position:absolute;
@@ -87,9 +87,9 @@ a, a:visited, a:hover{
 }
 .opacity{background: rgba(0,0,0,1);}
 .lt{ background:url("./images/ff.png") no-repeat; left:1px; top:10px; position:absolute; width:170px; height:170px;}
-.rt{ background:url("./images/ff.png") no-repeat; right:1px;  top:10px; position:absolute; width:170px; height:170px;}
-.lb{ background:url("./images/ff.png") no-repeat; left:1px; bottom:10px; position:absolute; width:170px; height:170px;}
-.rb{ background:url("./images/ff.png") no-repeat; right:1px; bottom:10px; position:absolute; width:170px; height:170px;}
+.rt{ background:url("./images/ff2.png") no-repeat; right:1px;  top:10px; position:absolute; width:170px; height:170px;}
+.lb{ background:url("./images/ff3.png") no-repeat; left:1px; bottom:10px; position:absolute; width:170px; height:170px;}
+.rb{ background:url("./images/ff4.png") no-repeat; right:1px; bottom:10px; position:absolute; width:170px; height:170px;}
 .mac{ background:url("./images/mac.png") no-repeat; left:475px; top:260px; width:170px; position:absolute; height:140px;}
 .line1{ left:313px; top:130px; position:absolute;}
 .line2{ right:220px; top:130px; position:absolute;}
