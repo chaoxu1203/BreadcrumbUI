@@ -7,6 +7,7 @@ $(function(){
     var net = require('net');
     var HOST = '192.168.1.200';
     var PORT = 4196;
+    var HexSet = new Array();
 
     //创建socket连接
     var client = new net.Socket();
@@ -32,10 +33,13 @@ $(function(){
             var place_y = datas[10]
             var place_z = datas[11]
 
+            var index = getIndex(Hex);
+            index = index + 1;
+
             //将收集到的数据显示到界面上
-            $('#bodyTemperature1').text(body_temperature);
-            $('#heartBeat1').text(heart_rate);
-            $('#temperature1').text(envorinment_temperature);
+            $('#bodyTemperature' + index).text(body_temperature);
+            $('#heartBeat'+ index).text(heart_rate);
+            $('#temperature' + index).text(envorinment_temperature);
         }
         else if(data.length==25) {
             var jump_step = datas[5]
@@ -46,6 +50,24 @@ $(function(){
             var relate_node_num = datas[7]
         }
     });
+
+    function getIndex(Hex){
+        if(HexSet.length == 0){
+            HexSet.push(Hex);
+            return 0;
+        }
+        else {
+            var index = HexSet.indexOf(Hex);
+            if(index == -1){
+                HexSet.push(Hex);
+                return HexSet.length-1;
+            }
+            else{
+                return index;
+            }
+        }
+    }
+
 });
 
 function draw(id,electricity,nodeArray) {
