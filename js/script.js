@@ -13,8 +13,9 @@ $(function(){
         for(var i=0; i<last_msg_time.length; i++){
             var cur_time = $.now();
             if(last_msg_time[i] > 0 && cur_time - last_msg_time[i] > 10000){//超过10S，判定超时
-                cancelLine(i+1);//移除路由线
-                showWarningText(i+1);// 显示失联警告
+                //cancelLine(i+1);//移除路由线
+                //showWarningText(i+1);// 显示失联警告
+                drawLine(null,null,null,null,null,null,null,true);
             }
         }
     }, 1000)//每秒循环一次
@@ -83,17 +84,6 @@ $(function(){
         console.log('Connection closed');
     });
 
-    function showElectricity(id, battery) {
-        //var electricity = Math.floor((100.0/12) * battery);//电量满格是12
-        $('#surplusElectricity' + id).val(battery);// electricity : 1-100
-        if(battery>7){//green
-        }
-        else if(battery>3){//yellow
-        }
-        else{//red
-        }
-    }
-
 
     function showWarningText(id) {//id:1-4
         //console.log("showWarningText:"+id);
@@ -105,19 +95,19 @@ $(function(){
 
 });
 
-function draw(id, nodeArray) {
+function draw(id, nodeArray,isLost) {
     switch (id) {
-        case "line1": drawLine("line1","rgb(255,0,0)",10,10,150,150,nodeArray);
+        case "line1": drawLine("line1","rgb(255,0,0)",10,10,150,150,nodeArray,isLost);
             break;
-        case "line2": drawLine("line2","rgb(0,255,0)",150,10,10,150,nodeArray);
+        case "line2": drawLine("line2","rgb(0,255,0)",150,10,10,150,nodeArray,isLost);
             break;
-        case "line3": drawLine("line3","rgb(0,0,255)",150,10,10,150,nodeArray);
+        case "line3": drawLine("line3","rgb(0,0,255)",150,10,10,150,nodeArray,isLost);
             break;
-        case "line4": drawLine("line4","rgb(255,255,0)",10,10,150,150,nodeArray);
+        case "line4": drawLine("line4","rgb(255,255,0)",10,10,150,150,nodeArray,isLost);
             break;
     }
 }
-function drawLine(id,rgb,startx,starty,endx,endy,nodeArray) {
+function drawLine(id,rgb,startx,starty,endx,endy,nodeArray,isLost) {
     var canvas = document.getElementById(id);
     if (canvas == null)
         return false;
@@ -136,21 +126,104 @@ function drawLine(id,rgb,startx,starty,endx,endy,nodeArray) {
     for (var i = 0; i < nodeArray.length; i++)
     {
         //context.rotate(45*Math.PI/180);
-        context.strokeStyle = "rgb(0,255,255)";
-        context.lineWidth=1;
-        if(id === "line2" || id === "line3")
-            context.strokeText(nodeArray[i], Number(startx+xFractionLength*(i*2+1.6)), Number(starty+yFractionLength*(i*2+1.6)));
-        else if(id === "line1" || id === "line4")
-            context.strokeText(nodeArray[i], Number(startx+xFractionLength*(i*2+1.4)), Number(starty+yFractionLength*(i*2+1.6)));
-        context.strokeStyle = rgb;
-        context.lineWidth=3;
-        context.strokeRect(Number(startx+xFractionLength*(i*2+1)),Number(starty+yFractionLength*(i*2+1)),xFractionLength,yFractionLength);
-        //context.beginPath();
-        //context.rotate(-45*Math.PI/180);
-        context.moveTo(Number(startx+xFractionLength*(i*2+2)), Number(starty+yFractionLength*(i*2+2)));
-        context.lineTo(Number(startx+xFractionLength*(i*2+3)), Number(starty+yFractionLength*(i*2+3)));
+        if(!isLost)
+        {
+            context.strokeStyle = "rgb(0,255,255)";
+            context.lineWidth=1;
+            if(id === "line2" || id === "line3")
+                context.strokeText(nodeArray[i], Number(startx+xFractionLength*(i*2+1.6)), Number(starty+yFractionLength*(i*2+1.6)));
+            else if(id === "line1" || id === "line4")
+                context.strokeText(nodeArray[i], Number(startx+xFractionLength*(i*2+1.35)), Number(starty+yFractionLength*(i*2+1.65)));
+            context.strokeStyle = rgb;
+            context.lineWidth=3;
+            context.strokeRect(Number(startx+xFractionLength*(i*2+1)),Number(starty+yFractionLength*(i*2+1)),xFractionLength,yFractionLength);
+            context.moveTo(Number(startx+xFractionLength*(i*2+2)), Number(starty+yFractionLength*(i*2+2)));
+            context.lineTo(Number(startx+xFractionLength*(i*2+3)), Number(starty+yFractionLength*(i*2+3)));
+        }
     }
-    context.lineTo(endx, endy);
-    context.stroke();
-    //context.fill();
+    if(!isLost) {
+        context.lineTo(endx, endy);
+        context.stroke();
+    }
+    if(isLost)// 失联时路径改为"X"，并显示警告信息
+    {
+        var lostCanvas,lostContext;
+        /*console.log("lostCanvas"+lostCanvas);*/
+        context.strokeStyle = "rgb(255,0,0)";
+        context.lineWidth=3;
+        switch (id) {
+            case "line1":
+                lostCanvas = document.getElementById("lost1");
+                lostContext = lostCanvas.getContext("2d");
+                lostContext.strokeStyle = "rgb(255,0,0)";
+                lostContext.font="20px Georgia";
+                context.font="120px Georgia";
+                context.strokeText("×",40, 100);
+                lostContext.strokeRect(5,2,160,30);
+                lostContext.strokeText("消防员1号已失联",10,23);
+                break;
+            case "line2":
+                lostCanvas = document.getElementById("lost2");
+                lostContext = lostCanvas.getContext("2d");
+                lostContext.strokeStyle = "rgb(255,0,0)";
+                lostContext.font="20px Georgia";
+                context.font="120px Georgia";
+                context.strokeText("×",40, 100);
+                lostContext.strokeRect(1,2,160,30);
+                lostContext.strokeText("消防员2号已失联",5,23);
+                break;
+            case "line3":
+                lostCanvas = document.getElementById("lost3");
+                lostContext = lostCanvas.getContext("2d");
+                lostContext.strokeStyle = "rgb(255,0,0)";
+                lostContext.font="20px Georgia";
+                context.font="120px Georgia";
+                context.strokeText("×",40, 100);
+                lostContext.strokeRect(5,2,160,30);
+                lostContext.strokeText("消防员3号已失联",10,23);
+                break;
+            case "line4":
+                lostCanvas = document.getElementById("lost4");
+                lostContext = lostCanvas.getContext("2d");
+                lostContext.strokeStyle = "rgb(255,0,0)";
+                lostContext.font="20px Georgia";
+                context.font="120px Georgia";
+                context.strokeText("×",40, 100);
+                lostContext.strokeRect(5,2,160,30);
+                lostContext.strokeText("消防员4号已失联",8,23);
+                break;
+        }
+    }
 }
+
+function showElectricity(id, battery) {
+    //var electricity = Math.floor((100.0/12) * battery);//电量满格是12
+    var canvas = document.getElementById('surplusElectricity'+id);
+    if (canvas == null)
+        return false;
+    var context = canvas.getContext("2d");
+    context.fillStyle = "rgb(255,255,255)";
+    context.fillRect(100,100,120,20);
+    if(battery>7){//green
+        context.fillStyle = "rgb(0,255,0)";
+        context.fillRect(100,100,battery*10,20);
+    }
+    else if(battery>3){//yellow
+        context.fillStyle = "rgb(255,255,0)";
+        context.fillRect(100,100,battery*10,20);
+    }
+    else{//red
+        context.fillStyle = "rgb(255,0,0)";
+        context.fillRect(100,100,battery*10,20);
+    }
+}
+
+/*draw("line1", [1,2,3,4],true)
+draw("line2", [5,6,7])
+draw("line3", [8,9])
+draw("line4", [10])*/
+/*
+showElectricity(1, 1);
+showElectricity(2, 4);
+showElectricity(3, 7);
+showElectricity(4, 12);*/

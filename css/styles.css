@@ -95,5 +95,13 @@ a, a:visited, a:hover{
 .line2{ right:220px; top:130px; position:absolute;}
 .line3{ left:313px; bottom:145px; position:absolute;}
 .line4{ right:220px; bottom:145px; position:absolute;}
+#lost1{ left:1px; top:190px; position:absolute;}
+#lost2{ right:-135px; top:190px; position:absolute;}
+#lost3{ left:1px; bottom:70px; position:absolute;}
+#lost4{ right:-130px; bottom:70px; position:absolute;}
+#surplusElectricity1{ left:215px; top:16px; width:200px; height: 120px; position:absolute;}
+#surplusElectricity2{ right:145px; top:16px; width:200px; height: 120px; position:absolute;}
+#surplusElectricity3{ left:215px; bottom:50px; width:200px; height: 120px; position:absolute;}
+#surplusElectricity4{ right:145px; bottom:50px; width:200px; height: 120px; position:absolute;}
 progress::-webkit-progress-bar { background: white; }
 progress{ background: green; }

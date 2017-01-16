@@ -44,7 +44,7 @@
         <p><span style="font-size: medium">编号 : </span><span id="id1">No05120001</span></p>
         <p><span style="font-size: medium">体温 : </span><span id="bodyTemperature1"></span></p>
         <p><span style="font-size: medium">心跳 : </span><span id="heartBeat1"></span></p>
-        <p><span style="font-size: medium;">剩余电量 : </span><progress id="surplusElectricity1" max="12" value="1" style="width:90px;"></progress></p>
+        <p><span style="font-size: medium;">剩余电量 : </p>
         <p><span style="font-size: medium">剩余节点数 : </span><span id="surplusNodeNum1"></span></p>
         <p><span style="font-size: medium">环境温度 : </span><span id="temperature1"></span></p>
     </div>
@@ -52,7 +52,7 @@
         <p><span style="font-size: medium">编号 : </span><span id="id2">No05120002</span></p>
         <p><span style="font-size: medium">体温 : </span><span id="bodyTemperature2"></span></p>
         <p><span style="font-size: medium">心跳 : </span><span id="heartBeat2"></span></p>
-        <p><span style="font-size: medium;">剩余电量 : </span><progress id="surplusElectricity2" max="12" value="1" style="width:90px;"></progress></p>
+        <p><span style="font-size: medium;">剩余电量 : </p>
         <p><span style="font-size: medium">剩余节点数 : </span><span id="surplusNodeNum2"></span></p>
         <p><span style="font-size: medium">环境温度 : </span><span id="temperature2"></span></p>
     </div>
@@ -60,7 +60,7 @@
         <p><span style="font-size: medium">编号 : </span><span id="id3">No05120003</span></p>
         <p><span style="font-size: medium">体温 : </span><span id="bodyTemperature3"></span></p>
         <p><span style="font-size: medium">心跳 : </span><span id="heartBeat3"></span></p>
-        <p><span style="font-size: medium;">剩余电量 : </span><progress id="surplusElectricity3" max="12" value="1" style="width:90px;"></progress></p>
+        <p><span style="font-size: medium;">剩余电量 : </span></p>
         <p><span style="font-size: medium">剩余节点数 : </span><span id="surplusNodeNum3"></span></p>
         <p><span style="font-size: medium">环境温度 : </span><span id="temperature3"></span></p>
     </div>
@@ -68,7 +68,7 @@
         <p><span style="font-size: medium">编号 : </span><span id="id4">No05120004</span></p>
         <p><span style="font-size: medium">体温 : </span><span id="bodyTemperature4"></span></p>
         <p><span style="font-size: medium">心跳 : </span><span id="heartBeat4"></span></p>
-        <p><span style="font-size: medium;">剩余电量 : </span><progress id="surplusElectricity4" max="12" value="1" style="width:90px;"></progress></p>
+        <p><span style="font-size: medium;">剩余电量 : </span></p>
         <p><span style="font-size: medium">剩余节点数 : </span><span id="surplusNodeNum4"></span></p>
         <p><span style="font-size: medium">环境温度 : </span><span id="temperature4"></span></p>
     </div>
@@ -76,8 +76,15 @@
     <canvas id="line2" class="line2"></canvas>
     <canvas id="line3" class="line3"></canvas>
     <canvas id="line4" class="line4"></canvas>
+    <canvas id="lost1"></canvas>
+    <canvas id="lost2"></canvas>
+    <canvas id="lost3"></canvas>
+    <canvas id="lost4"></canvas>
+    <canvas id="surplusElectricity1"></canvas>
+    <canvas id="surplusElectricity2"></canvas>
+    <canvas id="surplusElectricity3"></canvas>
+    <canvas id="surplusElectricity4"></canvas>
 </div>
-
 <script>window.$ = window.jQuery = require('./js/jquery.min.js');</script>
 <script src="./js/jquery.min.js"></script>
 <script src="./js/jquery.easyui.min.js"></script>
