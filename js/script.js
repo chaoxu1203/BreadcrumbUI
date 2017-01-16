@@ -15,10 +15,10 @@ $(function(){
             if(last_msg_time[i] > 0 && cur_time - last_msg_time[i] > 10000){//超过10S，判定超时
                 //cancelLine(i+1);//移除路由线
                 //showWarningText(i+1);// 显示失联警告
-                drawLine(null,null,null,null,null,null,null,true);
                 console.log("time out!");
                 last_msg_time[i] = 0;
-                drawLine(null,null,null,null,null,null,null,true);
+                var j = i+1;
+                drawLine("line"+j,"",0,0,0,0,null,true);
                 //cancelLine(i+1);//移除路由线
                 //showWarningText(i+1);// 显示失联警告
             }
@@ -111,18 +111,24 @@ function drawLine(id,rgb,startx,starty,endx,endy,nodeArray,isLost) {
     if (canvas == null)
         return false;
     var context = canvas.getContext("2d");
-    //context.beginPath();
+    context.clearRect(startx,starty,canvas.width,canvas.height);
+    /* context.strokeText("",40, 100);
+     context.clearRect(startx,starty,endx-startx,endy-starty);
+     context.beginPath();*/
     context.strokeStyle = rgb;
     context.fillStyle = rgb;
     context.lineWidth=3;
     context.moveTo(startx, starty);
     //之后的lineTo会以上次lineTo的节点为开始
     var lineLength = Math.floor(Math.sqrt((endx-startx)*(endx-startx)+(endy-starty)*(endy-starty)));
-    var fractionLength = Math.floor(lineLength / (nodeArray.length*2 + 1));
-    var xFractionLength = Math.floor((endx-startx) / (nodeArray.length*2 + 1));
-    var yFractionLength = Math.floor((endy-starty) / (nodeArray.length*2 + 1));
+    if (!!nodeArray && nodeArray.length>0)
+    {
+        var fractionLength = Math.floor(lineLength / (nodeArray.length*2 + 1));
+        var xFractionLength = Math.floor((endx-startx) / (nodeArray.length*2 + 1));
+        var yFractionLength = Math.floor((endy-starty) / (nodeArray.length*2 + 1));
+    }
     context.lineTo(startx+xFractionLength, starty+yFractionLength);
-    for (var i = 0; i < nodeArray.length; i++)
+    for (var i = 0; nodeArray && i < nodeArray.length; i++)
     {
         //context.rotate(45*Math.PI/180);
         if(!isLost)
@@ -218,11 +224,11 @@ function showElectricity(id, battery) {
 }
 
 /*draw("line1", [1,2,3,4],true)
-draw("line2", [5,6,7])
-draw("line3", [8,9])
-draw("line4", [10])*/
+ draw("line2", [5,6,7])
+ draw("line3", [8,9])
+ draw("line4", [10])*/
 /*
-showElectricity(1, 1);
-showElectricity(2, 4);
-showElectricity(3, 7);
-showElectricity(4, 12);*/
+ showElectricity(1, 1);
+ showElectricity(2, 4);
+ showElectricity(3, 7);
+ showElectricity(4, 12);*/
