@@ -161,9 +161,10 @@ function drawLine(id,rgb,startx,starty,endx,endy,nodeArray,isLost) {
                 lostCanvas = document.getElementById("lost1");
                 lostContext = lostCanvas.getContext("2d");
                 lostContext.strokeStyle = "rgb(255,0,0)";
+                context.fillStyle = "rgb(255,0,0)";
                 lostContext.font="20px Georgia";
-                context.font="120px Georgia";
-                context.strokeText("×",40, 100);
+                context.font="240px Georgia";
+                context.fillText("×",0, 150);
                 lostContext.strokeRect(5,2,160,30);
                 lostContext.strokeText("消防员1号已失联",10,23);
                 break;
@@ -171,9 +172,10 @@ function drawLine(id,rgb,startx,starty,endx,endy,nodeArray,isLost) {
                 lostCanvas = document.getElementById("lost2");
                 lostContext = lostCanvas.getContext("2d");
                 lostContext.strokeStyle = "rgb(255,0,0)";
+                context.fillStyle = "rgb(255,0,0)";
                 lostContext.font="20px Georgia";
-                context.font="120px Georgia";
-                context.strokeText("×",40, 100);
+                context.font="240px Georgia";
+                context.fillText("×",5, 150);
                 lostContext.strokeRect(1,2,160,30);
                 lostContext.strokeText("消防员2号已失联",5,23);
                 break;
@@ -181,9 +183,10 @@ function drawLine(id,rgb,startx,starty,endx,endy,nodeArray,isLost) {
                 lostCanvas = document.getElementById("lost3");
                 lostContext = lostCanvas.getContext("2d");
                 lostContext.strokeStyle = "rgb(255,0,0)";
+                context.fillStyle = "rgb(255,0,0)";
                 lostContext.font="20px Georgia";
-                context.font="120px Georgia";
-                context.strokeText("×",40, 100);
+                context.font="240px Georgia";
+                context.fillText("×",0, 150);
                 lostContext.strokeRect(5,2,160,30);
                 lostContext.strokeText("消防员3号已失联",10,23);
                 break;
@@ -191,9 +194,10 @@ function drawLine(id,rgb,startx,starty,endx,endy,nodeArray,isLost) {
                 lostCanvas = document.getElementById("lost4");
                 lostContext = lostCanvas.getContext("2d");
                 lostContext.strokeStyle = "rgb(255,0,0)";
+                context.fillStyle = "rgb(255,0,0)";
                 lostContext.font="20px Georgia";
-                context.font="120px Georgia";
-                context.strokeText("×",40, 100);
+                context.font="240px Georgia";
+                context.fillText("×",5, 150);
                 lostContext.strokeRect(5,2,160,30);
                 lostContext.strokeText("消防员4号已失联",8,23);
                 break;
@@ -224,11 +228,10 @@ function showElectricity(id, battery) {
 }
 
 /*draw("line1", [1,2,3,4],true)
- draw("line2", [5,6,7])
- draw("line3", [8,9])
- draw("line4", [10])*/
-/*
- showElectricity(1, 1);
- showElectricity(2, 4);
- showElectricity(3, 7);
- showElectricity(4, 12);*/
+draw("line2", [5,6,7],true)
+draw("line3", [8,9],true)
+draw("line4", [10],true)
+showElectricity(1, 1);
+showElectricity(2, 4);
+showElectricity(3, 7);
+showElectricity(4, 12);*/
