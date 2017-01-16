@@ -95,14 +95,27 @@ $(function(){
 });
 
 function draw(id, nodeArray,isLost) {
+    var lostCanvas, lostContext;
     switch (id) {
         case "line1": drawLine("line1","rgb(255,0,0)",10,10,150,150,nodeArray,isLost);
+            lostCanvas = document.getElementById("lost1");
+            lostContext = lostCanvas.getContext("2d");
+            lostContext.clearRect(0,0,lostCanvas.width,lostCanvas.height);
             break;
         case "line2": drawLine("line2","rgb(0,255,0)",150,10,10,150,nodeArray,isLost);
+            lostCanvas = document.getElementById("lost2");
+            lostContext = lostCanvas.getContext("2d");
+            lostContext.clearRect(0,0,lostCanvas.width,lostCanvas.height);
             break;
         case "line3": drawLine("line3","rgb(0,0,255)",150,10,10,150,nodeArray,isLost);
+            lostCanvas = document.getElementById("lost3");
+            lostContext = lostCanvas.getContext("2d");
+            lostContext.clearRect(0,0,lostCanvas.width,lostCanvas.height);
             break;
         case "line4": drawLine("line4","rgb(255,255,0)",10,10,150,150,nodeArray,isLost);
+            lostCanvas = document.getElementById("lost4");
+            lostContext = lostCanvas.getContext("2d");
+            lostContext.clearRect(0,0,lostCanvas.width,lostCanvas.height);
             break;
     }
 }
