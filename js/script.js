@@ -124,6 +124,7 @@ function drawLine(id,rgb,startx,starty,endx,endy,nodeArray,isLost) {
     if (canvas == null)
         return false;
     var context = canvas.getContext("2d");
+    context.font="10px sans-serif";
     context.clearRect(startx,starty,canvas.width,canvas.height);
     /* context.strokeText("",40, 100);
      context.clearRect(startx,starty,endx-startx,endy-starty);
