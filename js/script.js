@@ -16,6 +16,11 @@ $(function(){
                 //cancelLine(i+1);//移除路由线
                 //showWarningText(i+1);// 显示失联警告
                 drawLine(null,null,null,null,null,null,null,true);
+                console.log("time out!");
+                last_msg_time[i] = 0;
+                drawLine(null,null,null,null,null,null,null,true);
+                //cancelLine(i+1);//移除路由线
+                //showWarningText(i+1);// 显示失联警告
             }
         }
     }, 1000)//每秒循环一次
@@ -45,24 +50,19 @@ $(function(){
             var relate_node_num = datas[9]
             var remain_node_num = datas[10]
             var idAndBattery = parseInt(datas[11]);
-            var id = idAndBattery & 240;
+            var id = idAndBattery >> 4;
             var battery = idAndBattery & 15;
-
-            //console.log("envorinment_temperature:"+envorinment_temperature);
-            //console.log("body_temperature:"+body_temperature);
-            //console.log("heart_rate:"+heart_rate);
-            console.log("battery:"+battery);
 
             last_msg_time[id-1] = $.now();//记录当前时间戳
 
             //将收集到的数据显示到界面上
             console.log("id:"+id);
+            console.log("battery:"+battery);
             $('#bodyTemperature' + id).text(body_temperature);
             $('#heartBeat'+ id).text(heart_rate);
             $('#temperature' + id).text(envorinment_temperature);
             $('#surplusNodeNum' + id).text(remain_node_num);
-            showElectricity(id, electricity);
-
+            showElectricity(id, battery);
         }
         else if(type == "57") {
             var jumpStep = parseInt(datas[5]);
@@ -83,7 +83,6 @@ $(function(){
     client.on('close', function() {
         console.log('Connection closed');
     });
-
 
     function showWarningText(id) {//id:1-4
         //console.log("showWarningText:"+id);

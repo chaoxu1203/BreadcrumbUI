@@ -23,28 +23,28 @@ $(function(){
     //生成消防员信息
     function getInfos() {
         var firefight1 = {
-           name : "消防员1",
+           name : "张伟",
            age : 26,
             no : "No05120001",
             title : "班长",
             photoSrc : "./images/ff1.png"
         }
         var firefight2 = {
-            name : "消防员2",
+            name : "王磊",
             age : 24,
             no : "No05120002",
             title : "工兵",
             photoSrc : "./images/ff2.png"
         }
         var firefight3 = {
-            name : "消防员3",
+            name : "李军",
             age : 25,
             no : "No05120003",
             title : "工兵",
             photoSrc : "./images/ff3.png"
         }
         var firefight4 = {
-            name : "消防员4",
+            name : " 刘洋",
             age : 23,
             no : "No05120004",
             title : "工兵",
