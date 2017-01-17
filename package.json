@@ -7,10 +7,12 @@
     "pretty-bytes": "^2.0.1"
   },
   "devDependencies": {
+    "electron-packager": "^8.5.0",
     "electron-prebuilt": "^0.35.2",
     "socket.io": "^1.4.5"
   },
   "scripts": {
+    "packager-windows": "electron-packager ./ BreadCrumb --Windows --out ./outapp --electronVersion 1.4.13 --overwrite --icon=./images/bg.ico",
     "start": "electron main.js"
   },
   "author": "chao",
