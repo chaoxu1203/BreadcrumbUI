@@ -23,7 +23,7 @@ $(function(){
                 //showWarningText(i+1);// 显示失联警告
             }
         }
-    }, 1000)//每秒循环一次
+    }, 5000)//每秒循环一次
 
     setInterval(function() { //添加循环计时器
         var temperature =  Math.floor((Math.random()*120)+1);
@@ -163,7 +163,7 @@ function drawLine(id,startx,starty,endx,endy,nodeArray,signalQuality) {
         context.fillStyle = "rgb(0,255,0)";
         context.strokeStyle = "rgb(0,255,0)";
     }
-    else if(signalQuality>3){//yellow
+    else if(signalQuality>2){//yellow
         context.fillStyle = "rgb(255,255,0)";
         context.strokeStyle = "rgb(255,255,0)";
     }
@@ -196,7 +196,7 @@ function drawLine(id,startx,starty,endx,endy,nodeArray,signalQuality) {
                 //context.fillStyle = "rgb(0,255,0)";
                 context.strokeStyle = "rgb(0,255,0)";
             }
-            else if(signalQuality>3){//yellow
+            else if(signalQuality>2){//yellow
                 //context.fillStyle = "rgb(255,255,0)";
                 context.strokeStyle = "rgb(255,255,0)";
             }
