@@ -12,13 +12,13 @@ $(function(){
     setInterval(function() { //添加循环计时器
         for(var i=0; i<last_msg_time.length; i++){
             var cur_time = $.now();
-            if(last_msg_time[i] > 0 && cur_time - last_msg_time[i] > 10000){//超过10S，判定超时
+            if(last_msg_time[i] > 0 && cur_time - last_msg_time[i] > 4000){//超过4S，判定超时
                 //cancelLine(i+1);//移除路由线
                 //showWarningText(i+1);// 显示失联警告
                 console.log("time out!");
                 last_msg_time[i] = 0;
                 var j = i+1;
-                drawLine("line"+j,"",0,0,0,0,null,true);
+                drawLine("line"+j,0,0,0,0,null,0);
                 //cancelLine(i+1);//移除路由线
                 //showWarningText(i+1);// 显示失联警告
             }
@@ -51,15 +51,16 @@ $(function(){
             var remain_node_num = datas[10]
             var idAndBattery = parseInt(datas[11]);
             var id = idAndBattery >> 4;
-            var battery = idAndBattery & 15;
+            // var battery = idAndBattery & 15;
+            var battery = Math.floor((Math.random()*12)+1); // 生产1至12之间的随机数
 
             last_msg_time[id-1] = $.now();//记录当前时间戳
 
             //将收集到的数据显示到界面上
             console.log("id:"+id);
             console.log("battery:"+battery);
-            $('#bodyTemperature' + id).text(body_temperature);
-            $('#heartBeat'+ id).text(heart_rate);
+            $('#airBreath' + id).text(""+body_temperature+"%");
+            $('#heartRate'+ id).text(heart_rate);
             $('#temperature' + id).text(envorinment_temperature);
             $('#surplusNodeNum' + id).text(remain_node_num);
             showElectricity(id, battery);
@@ -68,6 +69,7 @@ $(function(){
             var jumpStep = parseInt(datas[5]);
             var id = parseInt(datas[6]);
             var route = new Array();
+            var signalQuality = Math.floor((Math.random()*12)+1); // 生产1至12之间的随机数
             route.push(datas[2]);
             if(jumpStep > 1){
                 route.push(datas.slice(6));
@@ -76,7 +78,7 @@ $(function(){
             console.log("id:"+id);
             console.log("jump_step:"+jumpStep);
             console.log("route:"+route);
-            draw("line"+id, route)
+            draw("line"+id, route,signalQuality);
         }
     });
 
@@ -94,77 +96,96 @@ $(function(){
 
 });
 
-function draw(id, nodeArray,isLost) {
+function draw(id, nodeArray,signalQuality) {
     var lostCanvas, lostContext;
     switch (id) {
-        case "line1": drawLine("line1","rgb(255,0,0)",10,10,150,150,nodeArray,isLost);
+        case "line1":
             lostCanvas = document.getElementById("lost1");
             lostContext = lostCanvas.getContext("2d");
             lostContext.clearRect(0,0,lostCanvas.width,lostCanvas.height);
+            drawLine("line1",10,10,150,150,nodeArray,signalQuality);
             break;
-        case "line2": drawLine("line2","rgb(0,255,0)",150,10,10,150,nodeArray,isLost);
+        case "line2":
             lostCanvas = document.getElementById("lost2");
             lostContext = lostCanvas.getContext("2d");
             lostContext.clearRect(0,0,lostCanvas.width,lostCanvas.height);
+            drawLine("line2",150,10,10,150,nodeArray,signalQuality);
             break;
-        case "line3": drawLine("line3","rgb(0,0,255)",150,10,10,150,nodeArray,isLost);
+        case "line3":
             lostCanvas = document.getElementById("lost3");
             lostContext = lostCanvas.getContext("2d");
             lostContext.clearRect(0,0,lostCanvas.width,lostCanvas.height);
+            drawLine("line3",150,10,10,150,nodeArray,signalQuality);
             break;
-        case "line4": drawLine("line4","rgb(255,255,0)",10,10,150,150,nodeArray,isLost);
+        case "line4":
             lostCanvas = document.getElementById("lost4");
             lostContext = lostCanvas.getContext("2d");
             lostContext.clearRect(0,0,lostCanvas.width,lostCanvas.height);
+            drawLine("line4",10,10,150,150,nodeArray,signalQuality);
             break;
     }
 }
-function drawLine(id,rgb,startx,starty,endx,endy,nodeArray,isLost) {
+function drawLine(id,startx,starty,endx,endy,nodeArray,signalQuality) {
     var canvas = document.getElementById(id);
     if (canvas == null)
         return false;
     var context = canvas.getContext("2d");
     context.font="10px sans-serif";
     context.clearRect(startx,starty,canvas.width,canvas.height);
-    /* context.strokeText("",40, 100);
-     context.clearRect(startx,starty,endx-startx,endy-starty);
-     context.beginPath();*/
-    context.strokeStyle = rgb;
-    context.fillStyle = rgb;
-    context.lineWidth=3;
-    context.moveTo(startx, starty);
-    //之后的lineTo会以上次lineTo的节点为开始
-    var lineLength = Math.floor(Math.sqrt((endx-startx)*(endx-startx)+(endy-starty)*(endy-starty)));
-    if (!!nodeArray && nodeArray.length>0)
-    {
-        var fractionLength = Math.floor(lineLength / (nodeArray.length*2 + 1));
-        var xFractionLength = Math.floor((endx-startx) / (nodeArray.length*2 + 1));
-        var yFractionLength = Math.floor((endy-starty) / (nodeArray.length*2 + 1));
+    if(signalQuality>7){//green
+        context.fillStyle = "rgb(0,255,0)";
+        context.strokeStyle = "rgb(0,255,0)";
     }
-    context.lineTo(startx+xFractionLength, starty+yFractionLength);
-    for (var i = 0; nodeArray && i < nodeArray.length; i++)
+    else if(signalQuality>3){//yellow
+        context.fillStyle = "rgb(255,255,0)";
+        context.strokeStyle = "rgb(255,255,0)";
+    }
+    else{//red
+        context.fillStyle = "rgb(255,0,0)";
+        context.strokeStyle = "rgb(255,0,0)";
+    }
+
+    if (signalQuality > 0 )
     {
-        //context.rotate(45*Math.PI/180);
-        if(!isLost)
+        context.lineWidth=3;
+        context.moveTo(startx, starty);
+        //之后的lineTo会以上次lineTo的节点为开始
+        var lineLength = Math.floor(Math.sqrt((endx-startx)*(endx-startx)+(endy-starty)*(endy-starty)));
+        if (!!nodeArray && nodeArray.length>0)
         {
-            context.strokeStyle = "rgb(0,255,255)";
+            var fractionLength = Math.floor(lineLength / (nodeArray.length*2 + 1));
+            var xFractionLength = Math.floor((endx-startx) / (nodeArray.length*2 + 1));
+            var yFractionLength = Math.floor((endy-starty) / (nodeArray.length*2 + 1));
+        }
+        context.lineTo(startx+xFractionLength, starty+yFractionLength);
+        for (var i = 0; nodeArray && i < nodeArray.length; i++)
+        {
             context.lineWidth=1;
             if(id === "line2" || id === "line3")
                 context.strokeText(nodeArray[i], Number(startx+xFractionLength*(i*2+1.6)), Number(starty+yFractionLength*(i*2+1.6)));
             else if(id === "line1" || id === "line4")
                 context.strokeText(nodeArray[i], Number(startx+xFractionLength*(i*2+1.35)), Number(starty+yFractionLength*(i*2+1.65)));
-            context.strokeStyle = rgb;
+            if(signalQuality>7){//green
+                //context.fillStyle = "rgb(0,255,0)";
+                context.strokeStyle = "rgb(0,255,0)";
+            }
+            else if(signalQuality>3){//yellow
+                //context.fillStyle = "rgb(255,255,0)";
+                context.strokeStyle = "rgb(255,255,0)";
+            }
+            else{//red
+                //context.fillStyle = "rgb(255,0,0)";
+                context.strokeStyle = "rgb(255,0,0)";
+            }
             context.lineWidth=3;
             context.strokeRect(Number(startx+xFractionLength*(i*2+1)),Number(starty+yFractionLength*(i*2+1)),xFractionLength,yFractionLength);
             context.moveTo(Number(startx+xFractionLength*(i*2+2)), Number(starty+yFractionLength*(i*2+2)));
             context.lineTo(Number(startx+xFractionLength*(i*2+3)), Number(starty+yFractionLength*(i*2+3)));
         }
-    }
-    if(!isLost) {
         context.lineTo(endx, endy);
         context.stroke();
     }
-    if(isLost)// 失联时路径改为"X"，并显示警告信息
+    else if(signalQuality == 0)// 失联时路径改为"X"，并显示警告信息
     {
         var lostCanvas,lostContext;
         /*console.log("lostCanvas"+lostCanvas);*/
@@ -239,13 +260,19 @@ function showElectricity(id, battery) {
         context.fillStyle = "rgb(255,0,0)";
         context.fillRect(100,100,battery*10,20);
     }
+    context.strokeStyle = "rgb(255,0,0)";
+    context.font="20px sans-serif";
+    console.log("battery = "+battery);
+    context.strokeText(""+parseInt(battery*100/12)+"%",143,116);
 }
 
-/*draw("line1", [1,2,3,4],true)
-draw("line2", [5,6,7],true)
-draw("line3", [8,9],true)
-draw("line4", [10],true)
+/*
+draw("line1", [1,2,3,4],0)
+draw("line2", [5,6,7],0)
+draw("line3", [8,9],0)
+draw("line4", [10],0)
 showElectricity(1, 1);
 showElectricity(2, 4);
 showElectricity(3, 7);
-showElectricity(4, 12);*/
+showElectricity(4, 12);
+*/
