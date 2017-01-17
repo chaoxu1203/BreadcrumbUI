@@ -64,6 +64,7 @@ $(function(){
             $('#temperature' + id).text(envorinment_temperature);
             $('#surplusNodeNum' + id).text(remain_node_num);
             showElectricity(id, battery);
+            showRetreat(id,envorinment_temperature);
         }
         else if(type == "57") {
             var jumpStep = parseInt(datas[5]);
@@ -95,6 +96,18 @@ $(function(){
     }
 
 });
+
+function showRetreat(id, envorinment_temperature) {
+    var retreatCanvas = document.getElementById("retreat" + id);
+    var retreatContext = retreatCanvas.getContext("2d");
+    retreatContext.font="20px Georgia";
+    retreatContext.strokeStyle="rgb(255,0,0)";
+    if (envorinment_temperature > 100) {
+        retreatContext.strokeText("该路线温度过高，请从原路返回", 10, 23);
+    } else {
+        retreatContext.clearRect(0, 0, retreatContext.width, retreatContext.height);
+    }
+}
 
 function draw(id, nodeArray,signalQuality) {
     var lostCanvas, lostContext;
@@ -266,6 +279,7 @@ function showElectricity(id, battery) {
     context.strokeText(""+parseInt(battery*100/12)+"%",143,116);
 }
 
+
 /*
 draw("line1", [1,2,3,4],0)
 draw("line2", [5,6,7],0)
@@ -275,4 +289,7 @@ showElectricity(1, 1);
 showElectricity(2, 4);
 showElectricity(3, 7);
 showElectricity(4, 12);
-*/
+showRetreat(1,210);
+showRetreat(2,222);
+showRetreat(3,201);
+showRetreat(4,201);*/

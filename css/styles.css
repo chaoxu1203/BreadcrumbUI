@@ -99,6 +99,10 @@ a, a:visited, a:hover{
 #lost2{ right:-135px; top:190px; position:absolute;}
 #lost3{ left:1px; bottom:70px; position:absolute;}
 #lost4{ right:-130px; bottom:70px; position:absolute;}
+#retreat1{ left:-1px; top:220px; position:absolute;}
+#retreat2{ right:-1px; top:220px; position:absolute;}
+#retreat3{ left:-1px; bottom:100px; position:absolute;}
+#retreat4{ right:0px; bottom:100px; position:absolute;}
 #surplusElectricity1{ left:215px; top:16px; width:200px; height: 120px; position:absolute;}
 #surplusElectricity2{ right:145px; top:16px; width:200px; height: 120px; position:absolute;}
 #surplusElectricity3{ left:215px; bottom:50px; width:200px; height: 120px; position:absolute;}
