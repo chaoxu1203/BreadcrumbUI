@@ -28,18 +28,22 @@ $(function(){
     setInterval(function() { //添加循环计时器
         var temperature =  Math.floor((Math.random()*120)+1);
         showRetreat(1,temperature);
+        $('#temperature1').text(temperature);
     }, 40000)
     setInterval(function() { //添加循环计时器
         var temperature =  Math.floor((Math.random()*120)+1);
         showRetreat(2,temperature);
+        $('#temperature2').text(temperature);
     }, 45000)
     setInterval(function() { //添加循环计时器
         var temperature =  Math.floor((Math.random()*120)+1);
         showRetreat(3,temperature);
+        $('#temperature3').text(temperature);
     }, 50000)
     setInterval(function() { //添加循环计时器
         var temperature =  Math.floor((Math.random()*120)+1);
         showRetreat(4,temperature);
+        $('#temperature4').text(temperature);
     }, 55000)
 
     //创建socket连接
@@ -76,7 +80,6 @@ $(function(){
             //将收集到的数据显示到界面上
             $('#airBreath' + id).text(""+body_temperature+"%");
             $('#heartRate'+ id).text(heart_rate);
-            $('#temperature' + id).text(envorinment_temperature);
             $('#surplusNodeNum' + id).text(remain_node_num);
             //showElectricity(id, battery);
         }
