@@ -25,6 +25,23 @@ $(function(){
         }
     }, 1000)//每秒循环一次
 
+    setInterval(function() { //添加循环计时器
+        var temperature =  Math.floor((Math.random()*120)+1);
+        showRetreat(1,temperature);
+    }, 40000)
+    setInterval(function() { //添加循环计时器
+        var temperature =  Math.floor((Math.random()*120)+1);
+        showRetreat(2,temperature);
+    }, 45000)
+    setInterval(function() { //添加循环计时器
+        var temperature =  Math.floor((Math.random()*120)+1);
+        showRetreat(3,temperature);
+    }, 50000)
+    setInterval(function() { //添加循环计时器
+        var temperature =  Math.floor((Math.random()*120)+1);
+        showRetreat(4,temperature);
+    }, 55000)
+
     //创建socket连接
     var client = new net.Socket();
     client.connect(PORT, HOST, function() {
@@ -52,19 +69,16 @@ $(function(){
             var idAndBattery = parseInt(datas[11]);
             var id = idAndBattery >> 4;
             // var battery = idAndBattery & 15;
-            var battery = Math.floor((Math.random()*12)+1); // 生产1至12之间的随机数
+            //var battery = Math.floor((Math.random()*12)+1); // 生产1至12之间的随机数
 
             last_msg_time[id-1] = $.now();//记录当前时间戳
 
             //将收集到的数据显示到界面上
-            console.log("id:"+id);
-            console.log("battery:"+battery);
             $('#airBreath' + id).text(""+body_temperature+"%");
             $('#heartRate'+ id).text(heart_rate);
             $('#temperature' + id).text(envorinment_temperature);
             $('#surplusNodeNum' + id).text(remain_node_num);
-            showElectricity(id, battery);
-            showRetreat(id,envorinment_temperature);
+            //showElectricity(id, battery);
         }
         else if(type == "57") {
             var jumpStep = parseInt(datas[5]);
@@ -105,7 +119,7 @@ function showRetreat(id, envorinment_temperature) {
     if (envorinment_temperature > 100) {
         retreatContext.strokeText("该路线温度过高，请从原路返回", 10, 23);
     } else {
-        retreatContext.clearRect(0, 0, retreatContext.width, retreatContext.height);
+        retreatContext.clearRect(0, 0, 300, 30);
     }
 }
 
@@ -279,16 +293,16 @@ function showElectricity(id, battery) {
     context.strokeText(""+parseInt(battery*100/12)+"%",143,116);
 }
 
+showElectricity(1, 9);
+showElectricity(2, 11);
+showElectricity(3, 3);
+showElectricity(4, 7);
 
 /*
 draw("line1", [1,2,3,4],0)
 draw("line2", [5,6,7],0)
 draw("line3", [8,9],0)
 draw("line4", [10],0)
-showElectricity(1, 1);
-showElectricity(2, 4);
-showElectricity(3, 7);
-showElectricity(4, 12);
 showRetreat(1,210);
 showRetreat(2,222);
 showRetreat(3,201);
