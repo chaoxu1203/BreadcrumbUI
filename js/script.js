@@ -21,6 +21,13 @@ $(function(){
                 drawLine("line"+j,0,0,0,0,null,0);
                 //cancelLine(i+1);//移除路由线
                 //showWarningText(i+1);// 显示失联警告
+                $("#aaa"+j).hide();
+                $("#bbb"+j).hide();
+                $("#ccc"+j).hide();
+                $("#ddd"+j).hide();
+                $("#eee"+j).hide();
+                $("#surplusElectricity"+j).hide();
+                $("#retreat"+j).hide();
             }
         }
         var heart_rate1 =  Math.floor((Math.random()*40)+61);
