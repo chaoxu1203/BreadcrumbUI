@@ -23,6 +23,14 @@ $(function(){
                 //showWarningText(i+1);// 显示失联警告
             }
         }
+        var heart_rate1 =  Math.floor((Math.random()*40)+61);
+        var heart_rate2 =  Math.floor((Math.random()*40)+61);
+        var heart_rate3 =  Math.floor((Math.random()*40)+61);
+        var heart_rate4 =  Math.floor((Math.random()*40)+61);
+        $('#heartRate1').text(""+heart_rate1+"bpm"); // 设置心率 正常范围 60--100 bpm
+        $('#heartRate2').text(""+heart_rate2+"bpm");
+        $('#heartRate3').text(""+heart_rate3+"bpm");
+        $('#heartRate4').text(""+heart_rate4+"bpm");
     }, 5000)//每秒循环一次
 
     setInterval(function() { //添加循环计时器
@@ -45,6 +53,52 @@ $(function(){
         showRetreat(4,temperature);
         $('#temperature4').text(temperature);
     }, 55000)
+    setInterval(function() { //
+        var temperature =  Math.floor((Math.random()*100)+21);
+        showRetreat(4,temperature);
+        $('#temperature4').text(temperature);
+    }, 55000)
+
+    var electricity1 = 96;
+    var electricity2 = 83;
+    var electricity3 = 56;
+    var electricity4 = 32;
+    var airBreath1 = 99;
+    var airBreath2 = 95;
+    var airBreath3 = 97;
+    var airBreath4 = 92;
+    setInterval(function() { //
+        showElectricity(1, electricity1);
+        electricity1 -= 0.5;
+    }, 60000)
+    setInterval(function() { //
+        showElectricity(2, electricity2);
+        electricity2 -= 0.5;
+    }, 59000)
+    setInterval(function() { //
+        showElectricity(3, electricity3);
+        electricity3 -= 0.5;
+    }, 58000)
+    setInterval(function() { //
+        showElectricity(4, electricity4);
+        electricity4 -= 0.5;
+    }, 57000)
+    setInterval(function() { //
+        $('#airBreath1').text(""+airBreath1+"%");
+        airBreath1 -= 0.5;
+    }, 56000)
+    setInterval(function() { //
+        $('#airBreath2').text(""+airBreath2+"%");
+        airBreath2 -= 0.5;
+    }, 55000)
+    setInterval(function() { //
+        $('#airBreath3').text(""+airBreath3+"%");
+        airBreath3 -= 0.5;
+    }, 54000)
+    setInterval(function() { //
+        $('#airBreath4').text(""+airBreath4+"%");
+        airBreath4 -= 0.5;
+    }, 53000)
 
     //创建socket连接
     var client = new net.Socket();
@@ -78,8 +132,6 @@ $(function(){
             last_msg_time[id-1] = $.now();//记录当前时间戳
 
             //将收集到的数据显示到界面上
-            $('#airBreath' + id).text(""+body_temperature+"%");
-            $('#heartRate'+ id).text(heart_rate);
             $('#surplusNodeNum' + id).text(remain_node_num);
             //showElectricity(id, battery);
         }
@@ -103,14 +155,6 @@ $(function(){
     client.on('close', function() {
         console.log('Connection closed');
     });
-
-    function showWarningText(id) {//id:1-4
-        //console.log("showWarningText:"+id);
-    }
-
-    function cancelLine(id) {
-        //console.log("cancelLine:"+id);
-    }
 
 });
 
@@ -278,28 +322,23 @@ function showElectricity(id, battery) {
     var context = canvas.getContext("2d");
     context.fillStyle = "rgb(255,255,255)";
     context.fillRect(100,100,120,20);
-    if(battery>7){//green
+    if(battery>75){//green
         context.fillStyle = "rgb(0,255,0)";
-        context.fillRect(100,100,battery*10,20);
+        context.fillRect(100,100,battery,20);
     }
-    else if(battery>3){//yellow
+    else if(battery>35){//yellow
         context.fillStyle = "rgb(255,255,0)";
-        context.fillRect(100,100,battery*10,20);
+        context.fillRect(100,100,battery,20);
     }
     else{//red
         context.fillStyle = "rgb(255,0,0)";
-        context.fillRect(100,100,battery*10,20);
+        context.fillRect(100,100,battery,20);
     }
     context.strokeStyle = "rgb(255,0,0)";
     context.font="20px sans-serif";
-    console.log("battery = "+battery);
-    context.strokeText(""+parseInt(battery*100/12)+"%",143,116);
+    context.strokeText(""+battery+"%",143,116);
 }
 
-showElectricity(1, 9);
-showElectricity(2, 11);
-showElectricity(3, 3);
-showElectricity(4, 7);
 
 /*
 draw("line1", [1,2,3,4],0)
