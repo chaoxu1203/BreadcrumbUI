@@ -132,6 +132,7 @@ $(function(){
             $("#ccc"+id).show();
             $("#ddd"+id).show();
             $("#eee"+id).show();
+            $("#surplusElectricity"+id).show();
             $("#retreat"+id).show();
             $('#surplusNodeNum' + id).text(remain_node_num);
             //showElectricity(id, battery);
