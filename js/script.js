@@ -26,22 +26,22 @@ $(function(){
     }, 5000)//每秒循环一次
 
     setInterval(function() { //添加循环计时器
-        var temperature =  Math.floor((Math.random()*120)+1);
+        var temperature =  Math.floor((Math.random()*100)+21);
         showRetreat(1,temperature);
         $('#temperature1').text(temperature);
     }, 40000)
     setInterval(function() { //添加循环计时器
-        var temperature =  Math.floor((Math.random()*120)+1);
+        var temperature =  Math.floor((Math.random()*100)+21);
         showRetreat(2,temperature);
         $('#temperature2').text(temperature);
     }, 45000)
     setInterval(function() { //添加循环计时器
-        var temperature =  Math.floor((Math.random()*120)+1);
+        var temperature =  Math.floor((Math.random()*100)+21);
         showRetreat(3,temperature);
         $('#temperature3').text(temperature);
     }, 50000)
     setInterval(function() { //添加循环计时器
-        var temperature =  Math.floor((Math.random()*120)+1);
+        var temperature =  Math.floor((Math.random()*100)+21);
         showRetreat(4,temperature);
         $('#temperature4').text(temperature);
     }, 55000)
@@ -119,7 +119,7 @@ function showRetreat(id, envorinment_temperature) {
     var retreatContext = retreatCanvas.getContext("2d");
     retreatContext.font="20px Georgia";
     retreatContext.strokeStyle="rgb(255,0,0)";
-    if (envorinment_temperature > 100) {
+    if (envorinment_temperature > 90) {
         retreatContext.strokeText("该路线温度过高，请从原路返回", 10, 23);
     } else {
         retreatContext.clearRect(0, 0, 300, 30);
