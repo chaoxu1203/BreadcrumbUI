@@ -27,37 +27,40 @@ $(function(){
         var heart_rate2 =  Math.floor((Math.random()*40)+61);
         var heart_rate3 =  Math.floor((Math.random()*40)+61);
         var heart_rate4 =  Math.floor((Math.random()*40)+61);
-        $('#heartRate1').text(""+heart_rate1+"bpm"); // 设置心率 正常范围 60--100 bpm
-        $('#heartRate2').text(""+heart_rate2+"bpm");
-        $('#heartRate3').text(""+heart_rate3+"bpm");
-        $('#heartRate4').text(""+heart_rate4+"bpm");
+        $("#aaa1").show();
+        $("#aaa2").show();
+        $("#aaa3").show();
+        $("#aaa4").show();
+        $('#heartRate1').text(""+heart_rate1+" bpm"); // 设置心率 正常范围 60--100 bpm
+        $('#heartRate2').text(""+heart_rate2+" bpm");
+        $('#heartRate3').text(""+heart_rate3+" bpm");
+        $('#heartRate4').text(""+heart_rate4+" bpm");
     }, 5000)//每秒循环一次
 
     setInterval(function() { //添加循环计时器
         var temperature =  Math.floor((Math.random()*100)+21);
+        $("#eee1").show();
         showRetreat(1,temperature);
         $('#temperature1').text(temperature);
-    }, 40000)
-    setInterval(function() { //添加循环计时器
-        var temperature =  Math.floor((Math.random()*100)+21);
-        showRetreat(2,temperature);
-        $('#temperature2').text(temperature);
-    }, 45000)
-    setInterval(function() { //添加循环计时器
-        var temperature =  Math.floor((Math.random()*100)+21);
-        showRetreat(3,temperature);
-        $('#temperature3').text(temperature);
     }, 50000)
     setInterval(function() { //添加循环计时器
         var temperature =  Math.floor((Math.random()*100)+21);
-        showRetreat(4,temperature);
-        $('#temperature4').text(temperature);
-    }, 55000)
-    setInterval(function() { //
+        $("#eee2").show();
+        showRetreat(2,temperature);
+        $('#temperature2').text(temperature);
+    }, 51000)
+    setInterval(function() { //添加循环计时器
         var temperature =  Math.floor((Math.random()*100)+21);
+        $("#eee3").show();
+        showRetreat(3,temperature);
+        $('#temperature3').text(temperature);
+    }, 52000)
+    setInterval(function() { //添加循环计时器
+        var temperature =  Math.floor((Math.random()*100)+21);
+        $("#eee4").show();
         showRetreat(4,temperature);
         $('#temperature4').text(temperature);
-    }, 55000)
+    }, 53000)
 
     var electricity1 = 96;
     var electricity2 = 83;
@@ -68,34 +71,42 @@ $(function(){
     var airBreath3 = 97;
     var airBreath4 = 92;
     setInterval(function() { //
+        $("#ccc1").show();
         showElectricity(1, electricity1);
         electricity1 -= 0.5;
     }, 60000)
     setInterval(function() { //
+        $("#ccc2").show();
         showElectricity(2, electricity2);
         electricity2 -= 0.5;
     }, 59000)
     setInterval(function() { //
+        $("#ccc3").show();
         showElectricity(3, electricity3);
         electricity3 -= 0.5;
     }, 58000)
     setInterval(function() { //
+        $("#ccc4").show();
         showElectricity(4, electricity4);
         electricity4 -= 0.5;
     }, 57000)
     setInterval(function() { //
+        $("#bbb1").show();
         $('#airBreath1').text(""+airBreath1+"%");
         airBreath1 -= 0.5;
     }, 56000)
     setInterval(function() { //
+        $("#bbb2").show();
         $('#airBreath2').text(""+airBreath2+"%");
         airBreath2 -= 0.5;
     }, 55000)
-    setInterval(function() { //
+    setInterval(function() {
+        $("#bbb3").show();
         $('#airBreath3').text(""+airBreath3+"%");
         airBreath3 -= 0.5;
     }, 54000)
-    setInterval(function() { //
+    setInterval(function() {
+        $("#bbb4").show();
         $('#airBreath4').text(""+airBreath4+"%");
         airBreath4 -= 0.5;
     }, 53000)
@@ -132,6 +143,7 @@ $(function(){
             last_msg_time[id-1] = $.now();//记录当前时间戳
 
             //将收集到的数据显示到界面上
+            $("#ddd"+id).show();
             $('#surplusNodeNum' + id).text(remain_node_num);
             //showElectricity(id, battery);
         }
@@ -159,6 +171,7 @@ $(function(){
 });
 
 function showRetreat(id, envorinment_temperature) {
+    $("#retreat"+id).show();
     var retreatCanvas = document.getElementById("retreat" + id);
     var retreatContext = retreatCanvas.getContext("2d");
     retreatContext.font="20px Georgia";
@@ -182,7 +195,7 @@ function draw(id, nodeArray,signalQuality) {
         case "line2":
             lostCanvas = document.getElementById("lost2");
             lostContext = lostCanvas.getContext("2d");
-            lostContext.clearRect(0,0,lostCanvas.width,lostCanvas.height);
+            lostContext.clearRect(0,0,100,100);
             drawLine("line2",150,10,10,150,nodeArray,signalQuality);
             break;
         case "line3":
@@ -315,6 +328,7 @@ function drawLine(id,startx,starty,endx,endy,nodeArray,signalQuality) {
 }
 
 function showElectricity(id, battery) {
+    //$("#retreat"+id).show();
     //var electricity = Math.floor((100.0/12) * battery);//电量满格是12
     var canvas = document.getElementById('surplusElectricity'+id);
     if (canvas == null)

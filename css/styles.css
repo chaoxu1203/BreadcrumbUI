@@ -105,6 +105,7 @@ a, a:visited, a:hover{
 #retreat4{ right:0px; bottom:100px; position:absolute;}
 #surplusElectricity1{ left:215px; top:16px; width:200px; height: 120px; position:absolute;}
 #surplusElectricity2{ right:145px; top:16px; width:200px; height: 120px; position:absolute;}
+
 #surplusElectricity3{ left:215px; bottom:50px; width:200px; height: 120px; position:absolute;}
 #surplusElectricity4{ right:145px; bottom:50px; width:200px; height: 120px; position:absolute;}
 progress::-webkit-progress-bar { background: white; }
