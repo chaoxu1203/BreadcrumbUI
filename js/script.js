@@ -27,10 +27,6 @@ $(function(){
         var heart_rate2 =  Math.floor((Math.random()*40)+61);
         var heart_rate3 =  Math.floor((Math.random()*40)+61);
         var heart_rate4 =  Math.floor((Math.random()*40)+61);
-        $("#aaa1").show();
-        $("#aaa2").show();
-        $("#aaa3").show();
-        $("#aaa4").show();
         $('#heartRate1').text(""+heart_rate1+" bpm"); // 设置心率 正常范围 60--100 bpm
         $('#heartRate2').text(""+heart_rate2+" bpm");
         $('#heartRate3').text(""+heart_rate3+" bpm");
@@ -39,25 +35,21 @@ $(function(){
 
     setInterval(function() { //添加循环计时器
         var temperature =  Math.floor((Math.random()*100)+21);
-        $("#eee1").show();
         showRetreat(1,temperature);
         $('#temperature1').text(temperature);
     }, 50000)
     setInterval(function() { //添加循环计时器
         var temperature =  Math.floor((Math.random()*100)+21);
-        $("#eee2").show();
         showRetreat(2,temperature);
         $('#temperature2').text(temperature);
     }, 51000)
     setInterval(function() { //添加循环计时器
         var temperature =  Math.floor((Math.random()*100)+21);
-        $("#eee3").show();
         showRetreat(3,temperature);
         $('#temperature3').text(temperature);
     }, 52000)
     setInterval(function() { //添加循环计时器
         var temperature =  Math.floor((Math.random()*100)+21);
-        $("#eee4").show();
         showRetreat(4,temperature);
         $('#temperature4').text(temperature);
     }, 53000)
@@ -71,42 +63,34 @@ $(function(){
     var airBreath3 = 97;
     var airBreath4 = 92;
     setInterval(function() { //
-        $("#ccc1").show();
         showElectricity(1, electricity1);
         electricity1 -= 0.5;
     }, 60000)
     setInterval(function() { //
-        $("#ccc2").show();
         showElectricity(2, electricity2);
         electricity2 -= 0.5;
     }, 59000)
     setInterval(function() { //
-        $("#ccc3").show();
         showElectricity(3, electricity3);
         electricity3 -= 0.5;
     }, 58000)
     setInterval(function() { //
-        $("#ccc4").show();
         showElectricity(4, electricity4);
         electricity4 -= 0.5;
     }, 57000)
     setInterval(function() { //
-        $("#bbb1").show();
         $('#airBreath1').text(""+airBreath1+"%");
         airBreath1 -= 0.5;
     }, 56000)
     setInterval(function() { //
-        $("#bbb2").show();
         $('#airBreath2').text(""+airBreath2+"%");
         airBreath2 -= 0.5;
     }, 55000)
     setInterval(function() {
-        $("#bbb3").show();
         $('#airBreath3').text(""+airBreath3+"%");
         airBreath3 -= 0.5;
     }, 54000)
     setInterval(function() {
-        $("#bbb4").show();
         $('#airBreath4').text(""+airBreath4+"%");
         airBreath4 -= 0.5;
     }, 53000)
@@ -143,7 +127,12 @@ $(function(){
             last_msg_time[id-1] = $.now();//记录当前时间戳
 
             //将收集到的数据显示到界面上
+            $("#aaa"+id).show();
+            $("#bbb"+id).show();
+            $("#ccc"+id).show();
             $("#ddd"+id).show();
+            $("#eee"+id).show();
+            $("#retreat"+id).show();
             $('#surplusNodeNum' + id).text(remain_node_num);
             //showElectricity(id, battery);
         }
@@ -171,7 +160,6 @@ $(function(){
 });
 
 function showRetreat(id, envorinment_temperature) {
-    $("#retreat"+id).show();
     var retreatCanvas = document.getElementById("retreat" + id);
     var retreatContext = retreatCanvas.getContext("2d");
     retreatContext.font="20px Georgia";
@@ -195,7 +183,7 @@ function draw(id, nodeArray,signalQuality) {
         case "line2":
             lostCanvas = document.getElementById("lost2");
             lostContext = lostCanvas.getContext("2d");
-            lostContext.clearRect(0,0,100,100);
+            lostContext.clearRect(0,0,lostCanvas.width,lostCanvas.height);
             drawLine("line2",150,10,10,150,nodeArray,signalQuality);
             break;
         case "line3":
@@ -218,7 +206,9 @@ function drawLine(id,startx,starty,endx,endy,nodeArray,signalQuality) {
         return false;
     var context = canvas.getContext("2d");
     context.font="10px sans-serif";
-    context.clearRect(startx,starty,canvas.width,canvas.height);
+    console.log("canvas.width = "+canvas.width)
+    console.log("canvas.height = "+canvas.height)
+    context.clearRect(0,0,canvas.width,canvas.height);
     if(signalQuality>7){//green
         context.fillStyle = "rgb(0,255,0)";
         context.strokeStyle = "rgb(0,255,0)";
